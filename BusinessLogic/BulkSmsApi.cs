@@ -13,6 +13,7 @@ namespace SampleWebAPI.BusinessLogic
     public class BulkSmsApi
     {
         public const string MediaType = "application/json";
+        private const string MyUri = "https://api.bulksms.com/v1/messages";
 
         /// <summary>
         /// Send SMS to the user.
@@ -21,7 +22,6 @@ namespace SampleWebAPI.BusinessLogic
         /// <returns></returns>
         public BulkSmsResponse BulkSmsResponse(BulkSmsRequest bulkSmsRequest)
         {
-            const string myUri = "https://api.bulksms.com/v1/messages";
             var myUsername = _getBulkSmsCredentials("BulkSmsUserName");
             var myPassword = _getBulkSmsCredentials("BulkSmsPassword");
 
@@ -29,7 +29,7 @@ namespace SampleWebAPI.BusinessLogic
 
             var httpClient = _getHttpClient(myUsername, myPassword);
 
-            var responseMessage = _getHttpResponseMessage(httpClient, myUri, content);
+            var responseMessage = _getHttpResponseMessage(httpClient, MyUri, content);
 
             var bulkSmsResponse = responseMessage.IsSuccessStatusCode
                 ? _response(responseMessage)
