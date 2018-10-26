@@ -1,9 +1,9 @@
-﻿using System.Configuration;
+﻿using Newtonsoft.Json;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace SampleWebAPI.BusinessLogic
 {
@@ -43,7 +43,7 @@ namespace SampleWebAPI.BusinessLogic
         public HttpClient HttpClient(string myUsername, string myPassword)
         {
             var credentials = new NetworkCredential(myUsername, myPassword);
-            var httpClient = new HttpClient(new HttpClientHandler {Credentials = credentials});
+            var httpClient = new HttpClient(new HttpClientHandler { Credentials = credentials });
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaType));
             return httpClient;
